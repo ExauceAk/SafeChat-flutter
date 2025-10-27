@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:safe_chat/screens/home_screen.dart';
+import 'package:safe_chat/screens/auth_screen.dart';
 import 'package:safe_chat/services/api_service.dart';
 
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: HomeScreen(),
+          home: AuthScreen(),
         ));
   }
 }
