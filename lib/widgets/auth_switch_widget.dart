@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AuthSwitch extends StatefulWidget {
-  const AuthSwitch({Key? key}) : super(key: key);
+  final ValueChanged<bool> onToggle;
+  const AuthSwitch({Key? key , required this.onToggle}) : super(key: key);
 
   @override
   State<AuthSwitch> createState() => _AuthSwitchState();
@@ -9,6 +10,11 @@ class AuthSwitch extends StatefulWidget {
 
 class _AuthSwitchState extends State<AuthSwitch> {
   bool isLogin = true;
+
+  void _toggle(bool value) {
+    setState(() => isLogin = value);
+    widget.onToggle(value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +49,7 @@ class _AuthSwitchState extends State<AuthSwitch> {
             children: [
               Expanded(
                 child: GestureDetector(
-                  onTap: () => setState(() => isLogin = true),
+                  onTap: () => setState(() => _toggle(true)),
                   child: Center(
                     child: Text(
                       'Login',
@@ -57,7 +63,7 @@ class _AuthSwitchState extends State<AuthSwitch> {
               ),
               Expanded(
                 child: GestureDetector(
-                  onTap: () => setState(() => isLogin = false),
+                  onTap: () => setState(() => _toggle(false)),
                   child: Center(
                     child: Text(
                       'Sign Up',
