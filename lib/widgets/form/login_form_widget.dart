@@ -13,29 +13,32 @@ class LoginFormWidget extends StatefulWidget {
 class _LoginFormWidgetState extends State<LoginFormWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isRememberMe = false;
+
+
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       width: double.infinity,
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
+        spacing: 15,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           buildTextField(emailController, "Email"),
-          const SizedBox(height: 10),
-          buildTextField(
-            passwordController,
-            "Password",
-            isPassword: true,
-          ),
+          buildTextField(passwordController, "Password", isPassword: true),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   Checkbox(
-                    value: true,
-                    onChanged: (v) {},
+                    value: isRememberMe,
+                    onChanged: (v) {
+                      setState(() {
+                        isRememberMe = v!;
+                      });
+                    },
                     activeColor: Colors.blueAccent,
                   ),
                   const Text("Remember me"),
@@ -59,17 +62,12 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
               child: const Text(
                 "Login",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
           ),
