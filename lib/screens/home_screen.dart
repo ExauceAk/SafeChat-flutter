@@ -98,6 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  final seachController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -112,6 +114,55 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               spacing: 15,
               children: [
+                SizedBox(
+                  height: 50,
+                  child: Row(
+                    spacing: 10,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: seachController,
+                          style: const TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            hintText: 'Search a message...',
+                            hintStyle: const TextStyle(color: Colors.blueGrey),
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.search,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.edit_calendar_outlined,
+                            size: 25,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: size.height * 0.8,
                   child: GridView.builder(
