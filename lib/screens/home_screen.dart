@@ -10,35 +10,87 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Map<String, dynamic>> notes = [
+  List<Map<String, dynamic>> messages = [
     {
       "id": 1,
-      "title": "Courses",
-      "content": "Acheter du pain, du lait et des œufs"
+      "profileImage": "assets/images/pp1.jpg",
+      "name": "Marie Dupont",
+      "lastMessage": "Tu as reçu les fichiers que je t’ai envoyés ?",
+      "date": "09:32 PM",
+      "unreadCount": 2,
     },
     {
       "id": 2,
-      "title": "Idées de contenu",
-      "content":
-          "Poster un article à propos de nos voyages propos de nos voyages propos de nos voyages propos de nos voyages"
+      "profileImage": "assets/images/pp3.jpg",
+      "name": "Jean-Marc Lefèvre",
+      "lastMessage": "Merci pour ton aide hier 🙏",
+      "date": "09:32 PM",
+      "unreadCount": 0,
     },
-    {"id": 3, "title": "RDV", "content": "Déjeuner avec François"},
-    {"id": 4, "title": "Musique", "content": "Trouver de nouvelles chansons"},
-    {"id": 5, "title": "Musique", "content": "Trouver de nouvelles chansons"},
-    {"id": 6, "title": "Musique", "content": "Trouver de nouvelles chansons"},
-    {"id": 7, "title": "À faire", "content": "Réserver un billet d’avion"},
-    {"id": 8, "title": "À faire", "content": "Réserver un billet d’avion"},
-    {"id": 9, "title": "À faire", "content": "Réserver un billet d’avion"},
-    {"id": 10, "title": "À faire", "content": "Réserver un billet d’avion"},
-  ];
-
-  // Couleurs disponibles
-  final List<Color> colors = [
-    const Color(0xFFFFF9C4), // jaune clair
-    const Color(0xFFC8E6C9), // vert clair
-    const Color(0xFFBBDEFB), // bleu clair
-    const Color(0xFFFFCDD2), // rouge clair
-    const Color(0xFFE0E0E0), // gris clair
+    {
+      "id": 3,
+      "profileImage": "assets/images/pp2.jpg",
+      "name": "Alice Martin",
+      "lastMessage": "On se voit toujours demain pour le déjeuner ?",
+      "date": "09:32 PM",
+      "unreadCount": 1,
+    },
+    {
+      "id": 4,
+      "profileImage": "assets/images/pp1.jpg",
+      "name": "Thomas Bernard",
+      "lastMessage": "Je t’envoie la présentation dans 5 minutes.",
+      "date": "09:32 PM",
+      "unreadCount": 0,
+    },
+    {
+      "id": 5,
+      "profileImage": "assets/images/pp3.jpg",
+      "name": "Élodie Rousseau",
+      "lastMessage": "C’était super hier soir 😄",
+      "date": "09:32 PM",
+      "unreadCount": 3,
+    },
+    {
+      "id": 6,
+      "profileImage": "assets/images/pp2.jpg",
+      "name": "Lucas Durand",
+      "lastMessage": "Peux-tu vérifier les chiffres du rapport ?",
+      "date": "09:32 PM",
+      "unreadCount": 0,
+    },
+    {
+      "id": 7,
+      "profileImage": "assets/images/pp1.jpg",
+      "name": "Sophie Laurent",
+      "lastMessage": "Ok parfait, je note ça.",
+      "date": "09:32 PM",
+      "unreadCount": 0,
+    },
+    {
+      "id": 8,
+      "profileImage": "assets/images/pp3.jpg",
+      "name": "Paul Girard",
+      "lastMessage": "Je passe te voir cet après-midi.",
+      "date": "09:32 PM",
+      "unreadCount": 4,
+    },
+    {
+      "id": 9,
+      "profileImage": "assets/images/pp1.jpg",
+      "name": "Nadia Petit",
+      "lastMessage": "Tu peux m’appeler dès que tu es dispo ?",
+      "date": "09:32 PM",
+      "unreadCount": 1,
+    },
+    {
+      "id": 10,
+      "profileImage": "assets/images/pp2.jpg",
+      "name": "Antoine Moreau",
+      "lastMessage": "Bonne nuit 🌙",
+      "date": "09:32 PM",
+      "unreadCount": 0,
+    },
   ];
 
   @override
@@ -51,153 +103,112 @@ class _HomeScreenState extends State<HomeScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Colors.white,
-        drawer: Drawer(
-            child: SafeArea(
-                child: Column(
-          children: [
-            UserAccountsDrawerHeader(
-              accountName: Text('John Doe'),
-              accountEmail: Text('johndoe@gmail.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(Icons.person, size: 40, color: Colors.blue),
-              ),
-              decoration: BoxDecoration(color: Colors.deepPurple),
-            ),
-            Expanded(
-                child: ListView(
+      backgroundColor: Color(0xFFf6f6f6),
+      body: Builder(
+        builder: (context) => SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: 15,
               children: [
-                ListTile(
-                  leading: Icon(Icons.account_box),
-                  title: Text('Profile'),
-                ),
-              ],
-            )),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => AuthScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                ),
-                child: Text(
-                  'Log Out',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            )
-          ],
-        ))),
-        body: Builder(
-            builder: (context) => SafeArea(
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      spacing: 5,
-                      children: [
-                        Row(
+                SizedBox(
+                  height: size.height * 0.8,
+                  child: GridView.builder(
+                    itemCount: messages.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          childAspectRatio: 4,
+                        ),
+                    itemBuilder: (context, index) {
+                      final message = messages[index];
+                      return Container(
+                        height: 10,
+                        width: 10,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          spacing: 10,
                           children: [
-                            IconButton(
-                                onPressed: () {
-                                  Scaffold.of(context).openDrawer();
-                                },
-                                icon: Icon(Icons.menu)),
-                            Text(
-                              'My Notes',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                            Container(
+                              height: 45,
+                              width: 45,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blueAccent,
+                              ),
+                              clipBehavior: Clip.antiAlias,
+                              child: Image.asset(
+                                message["profileImage"],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    message['name'],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    message['lastMessage'],
+                                    style: const TextStyle(fontSize: 15),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Text(message['date']),
+                                if (message['unreadCount'] != 0)
+                                  Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.blueAccent,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        '${message['unreadCount']}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),
-                        Text(
-                          "Organize your ideas and tasks easily",
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.8,
-                          child: GridView.builder(
-                            itemCount: notes.length + 1,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 12,
-                              mainAxisSpacing: 12,
-                              childAspectRatio: 1.2,
-                            ),
-                            itemBuilder: (context, index) {
-                              if (index == notes.length) {
-                                // Bloc vide
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    color: colors.last,
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: const Center(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(Icons.note_outlined,
-                                            size: 40, color: Colors.grey),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          'No notes click on +',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.grey),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                              final note = notes[index];
-                              final color = colors[index % (colors.length - 1)];
-
-                              return Container(
-                                height: 10,
-                                width: 10,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                decoration: BoxDecoration(
-                                    color: color,
-                                    borderRadius: BorderRadius.circular(16)),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      note['title'],
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      note['content'],
-                                      style: const TextStyle(fontSize: 15),
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    )))));
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
-
-

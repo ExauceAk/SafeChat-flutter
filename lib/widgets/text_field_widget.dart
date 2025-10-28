@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 
-
-Widget buildTextField(TextEditingController fieldController, String label,
-    {bool isPassword = false}) {
+Widget buildTextField(
+  TextEditingController fieldController,
+  String label, {
+  bool isPassword = false,
+}) {
   return SizedBox(
-    height: 42,
+    height: 48,
     child: TextField(
       obscureText: isPassword,
       controller: fieldController,
       style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(color: Colors.grey),
+        labelStyle: const TextStyle(color: Colors.blueGrey),
         filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        fillColor: Color(0xFFf6f6f6),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: BorderSide.none,
+        ),
       ),
     ),
   );
