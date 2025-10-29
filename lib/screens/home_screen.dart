@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/bottom_navigation_bar_widget.dart';
 import 'auth_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -260,6 +261,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 15,
+        shape: const CircleBorder(),
+        backgroundColor: Colors.blueAccent,
+        child: Center(child: Icon(Icons.add, size: 30 , fontWeight: FontWeight.w600, color: Colors.white,)),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: MainBottomNav(currentIndex: 0),
     );
   }
 }
