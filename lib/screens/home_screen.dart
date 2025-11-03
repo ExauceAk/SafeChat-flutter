@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/bottom_navigation_bar_widget.dart';
 import 'auth_screen.dart';
+import 'conversation_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -177,80 +178,87 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                     itemBuilder: (context, index) {
                       final message = messages[index];
-                      return Container(
-                        height: 10,
-                        width: 10,
-                        padding: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 10,
+                      return InkWell(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ConversationScreen()),
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Row(
-                          spacing: 10,
-                          children: [
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blueAccent,
+                        child: Container(
+                          height: 10,
+                          width: 10,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            spacing: 10,
+                            children: [
+                              Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blueAccent,
+                                ),
+                                clipBehavior: Clip.antiAlias,
+                                child: Image.asset(
+                                  message["profileImage"],
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              clipBehavior: Clip.antiAlias,
-                              child: Image.asset(
-                                message["profileImage"],
-                                fit: BoxFit.cover,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text(
+                                      message['name'],
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      message['lastMessage'],
+                                      style: const TextStyle(fontSize: 15),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                              Column(
                                 children: [
-                                  Text(
-                                    message['name'],
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    message['lastMessage'],
-                                    style: const TextStyle(fontSize: 15),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Column(
-                              children: [
-                                Text(message['date']),
-                                if (message['unreadCount'] != 0)
-                                  Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.blueAccent,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '${message['unreadCount']}',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
+                                  Text(message['date']),
+                                  if (message['unreadCount'] != 0)
+                                    Container(
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.blueAccent,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          '${message['unreadCount']}',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -266,7 +274,14 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 15,
         shape: const CircleBorder(),
         backgroundColor: Colors.blueAccent,
-        child: Center(child: Icon(Icons.add, size: 30 , fontWeight: FontWeight.w600, color: Colors.white,)),
+        child: Center(
+          child: Icon(
+            Icons.add,
+            size: 30,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: MainBottomNav(currentIndex: 0),
