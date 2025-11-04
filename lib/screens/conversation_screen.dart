@@ -22,7 +22,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
             ),
             child: Container(
               color: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 15 , vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Row(
                 children: [
                   InkWell(
@@ -54,13 +54,13 @@ class _ConversationScreenState extends State<ConversationScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Text('Online' , style: TextStyle(color: Colors.green),),
+                      Text('Online', style: TextStyle(color: Colors.green)),
                     ],
                   ),
                   SizedBox(width: 20),
-                  Icon(Icons.video_call_rounded , size: 32 , color: Colors.grey,),
+                  Icon(Icons.video_call_rounded, size: 32, color: Colors.grey),
                   SizedBox(width: 20),
-                  Icon(Icons.phone , size: 25 , color: Colors.grey,)
+                  Icon(Icons.phone, size: 25, color: Colors.grey),
                 ],
               ),
             ),
@@ -73,7 +73,18 @@ class _ConversationScreenState extends State<ConversationScreen> {
           child: Center(child: Column(children: [Text('Hello from conv')])),
         ),
       ),
-      bottomNavigationBar: Container(child: Text("Testoo")),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        child: BottomAppBar(
+          color: Colors.white,
+          notchMargin: 5,
+          elevation: 30,
+          child: Row(children: []),
+        ),
+      ),
     );
   }
 }
